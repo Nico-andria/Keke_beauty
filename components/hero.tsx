@@ -31,7 +31,7 @@ export default function Hero() {
           <div className="flex flex-col items-center space-y-4">
             <div className="relative w-24 h-24 md:w-32 md:h-32">
               <Image
-                src="/keke-logo.jfif"
+                src="/keke-logo.jpg"
                 alt="Keke Beauty Academy Logo"
                 fill
                 className="object-contain rounded-full shadow-lg"
