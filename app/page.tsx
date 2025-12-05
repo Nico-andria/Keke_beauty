@@ -3,7 +3,7 @@ import About from "@/components/about";
 // import Courses from "@/components/courses";
 import WhyChooseUs from "@/components/why-choose-us";
 import HowItWorks from "@/components/how-it-works";
-import RegistrationForm from "@/components/registration-form";
+// import RegistrationForm from "@/components/registration-form";
 import Footer from "@/components/footer";
 import FeaturedCourse from "@/components/featured-course";
 
@@ -32,7 +32,7 @@ export default function HomePage() {
           <FeaturedCourse />
           <WhyChooseUs />
           <HowItWorks />
-          <RegistrationForm />
+          {/* <RegistrationForm /> */}
           <Footer />
         </main>
       </div>

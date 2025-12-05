@@ -23,7 +23,10 @@ export default function FeaturedCourse() {
 
   return (
     <>
-      <section className="py-20 bg-linear-to-b from-white via-pink-50 to-white overflow-hidden">
+      <section
+        className="py-20 bg-linear-to-b from-white via-pink-50 to-white overflow-hidden"
+        id="featuredCourse"
+      >
         <div className="container mx-auto px-4 max-w-7xl">
           {/* Header */}
           <motion.div

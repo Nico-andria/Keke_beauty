@@ -39,7 +39,7 @@ export default function Footer() {
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-pink-400 shrink-0" />
                   <a
-                    href="tel:+96566586964"
+                    href="https://wa.me/96566586964"
                     className="text-gray-300 hover:text-pink-400 transition-colors"
                   >
                     +965 66586964
@@ -97,7 +97,7 @@ export default function Footer() {
                 <button
                   onClick={() =>
                     document
-                      .getElementById("registration")
+                      .getElementById("featuredCourse")
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
                   className="block text-gray-300 hover:text-pink-400 transition-colors text-left cursor-pointer"

@@ -116,7 +116,7 @@ export default function HowItWorks() {
             <button
               onClick={() =>
                 document
-                  .getElementById("registration")
+                  .getElementById("featuredCourse")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
               className="bg-linear-to-r from-pink-500 to-purple-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer"

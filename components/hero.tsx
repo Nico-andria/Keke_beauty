@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function Hero() {
   const scrollToRegistration = () => {
     document
-      .getElementById("registration")
+      .getElementById("featuredCourse")
       ?.scrollIntoView({ behavior: "smooth" });
   };
 
