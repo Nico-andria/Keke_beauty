@@ -87,7 +87,7 @@ Best regards,
 Keke Beauty Academy Registration System
     `);
 
-    const mailtoLink = `mailto:contact@kekebevarah.com?subject=${emailSubject}&body=${emailBody}`;
+    const mailtoLink = `mailto:iangaly.nirina@gmail.com?subject=${emailSubject}&body=${emailBody}`;
     window.location.href = mailtoLink;
 
     setTimeout(() => {
@@ -279,7 +279,7 @@ Keke Beauty Academy Registration System
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full h-14 bg-linear-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-semibold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="w-full h-14 bg-linear-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-semibold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center space-x-2">

@@ -86,21 +86,21 @@ export default function Footer() {
                 Quick Access
               </h3>
               <div className="space-y-2">
-                <a
+                {/* <a
                   href="https://hotmart.com/en/club/rabevason-hantahariniaina-prisca/products/6237641"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-gray-300 hover:text-pink-400 transition-colors"
                 >
                   Learning Platform →
-                </a>
+                </a> */}
                 <button
                   onClick={() =>
                     document
                       .getElementById("registration")
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="block text-gray-300 hover:text-pink-400 transition-colors text-left"
+                  className="block text-gray-300 hover:text-pink-400 transition-colors text-left cursor-pointer"
                 >
                   Register for Courses →
                 </button>

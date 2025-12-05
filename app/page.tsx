@@ -1,10 +1,11 @@
 import Hero from "@/components/hero";
 import About from "@/components/about";
-import Courses from "@/components/courses";
+// import Courses from "@/components/courses";
 import WhyChooseUs from "@/components/why-choose-us";
 import HowItWorks from "@/components/how-it-works";
 import RegistrationForm from "@/components/registration-form";
 import Footer from "@/components/footer";
+import FeaturedCourse from "@/components/featured-course";
 
 export default function HomePage() {
   return (
@@ -27,7 +28,8 @@ export default function HomePage() {
         <main className="relative z-10 bg-white/90 backdrop-blur-sm mx-2 md:mx-6 rounded-3xl shadow-2xl overflow-hidden">
           <Hero />
           <About />
-          <Courses />
+          {/* <Courses /> */}
+          <FeaturedCourse />
           <WhyChooseUs />
           <HowItWorks />
           <RegistrationForm />

@@ -11,12 +11,12 @@ export default function Hero() {
       ?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const goToPlatform = () => {
-    window.open(
-      "https://hotmart.com/en/club/rabevason-hantahariniaina-prisca/products/6237641",
-      "_blank"
-    );
-  };
+  // const goToPlatform = () => {
+  //   window.open(
+  //     "https://hotmart.com/en/club/rabevason-hantahariniaina-prisca/products/6237641",
+  //     "_blank"
+  //   );
+  // };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-linear-to-b from-pink-50 to-white overflow-hidden">
@@ -74,18 +74,18 @@ export default function Hero() {
             <Button
               onClick={scrollToRegistration}
               size="lg"
-              className="bg-pink-500 hover:bg-pink-600 text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              className="bg-pink-500 hover:bg-pink-600 text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
             >
               Register Now
             </Button>
-            <Button
+            {/* <Button
               onClick={goToPlatform}
               variant="outline"
               size="lg"
               className="border-pink-500 text-pink-500 hover:bg-pink-50 px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
               Go to Platform
-            </Button>
+            </Button> */}
           </motion.div>
         </motion.div>
 

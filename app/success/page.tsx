@@ -120,6 +120,23 @@ function SuccessContent() {
               </p>
             </div>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <Link href="/courses">
+              <Button
+                variant="outline"
+                className="w-full border-2 border-pink-300 hover:bg-pink-50 text-pink-600 font-semibold py-6"
+              >
+                Browse All Courses →
+              </Button>
+            </Link>
+          </motion.div>
         </div>
 
         {/* Decorative Elements */}

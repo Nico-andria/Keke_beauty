@@ -15,7 +15,7 @@ export type Course = {
 export type Category = {
   title: string;
   description: string;
-  icon?: LucideIcon;
+  icon: LucideIcon;
   color?: string;
   courses: Course[];
 };
