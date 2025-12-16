@@ -7,11 +7,13 @@ import {
   CheckCircle,
   Mail,
   ArrowRight,
-  Badge,
+  Badge as LucideBadge,
   Clock,
   Star,
   Users,
 } from "lucide-react";
+import { GraduationCap, Sparkles, Briefcase } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -23,6 +25,13 @@ import {
 import Link from "next/link";
 import { formatPrice } from "@/lib/course-utils";
 import { courseCategories } from "@/data/courses";
+import { Badge } from "@/components/ui/badge";
+
+const iconMap: Record<string, LucideIcon> = {
+  GraduationCap,
+  Sparkles,
+  Briefcase,
+};
 
 function SuccessContent() {
   const searchParams = useSearchParams();
@@ -171,12 +180,17 @@ function SuccessContent() {
               className="space-y-8"
             >
               {/* Category Header */}
+              {/* Category Header */}
               <div className="flex items-center justify-center mb-12">
                 <div
                   className={`${category.color} rounded-full p-4 mr-4 shadow-lg`}
                 >
-                  <category.icon className="w-8 h-8 text-white" />
+                  {(() => {
+                    const Icon = iconMap[category.icon];
+                    return <Icon className="w-8 h-8 text-white" />;
+                  })()}
                 </div>
+
                 <div className="text-center">
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
                     {category.title}
@@ -196,7 +210,7 @@ function SuccessContent() {
                     whileHover={{ y: -5 }}
                     className="group"
                   >
-                    <Link href={`/course/${course.id}`}>
+                    <Link href={`/courses/${course.id}`}>
                       <Card className="h-full hover:shadow-2xl transition-all duration-300 border-0 shadow-lg bg-white/80 backdrop-blur-sm flex flex-col cursor-pointer group-hover:border-pink-300 group-hover:border-2">
                         <CardHeader className="pb-4">
                           <div className="flex items-start justify-between mb-3">
