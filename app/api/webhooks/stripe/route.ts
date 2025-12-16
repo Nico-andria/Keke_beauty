@@ -109,13 +109,20 @@ const adminHtmlEmail = (
 </body>
 </html>
 `;
+// --- Helper pour récupérer le raw body ---
+async function getRawBody(req: NextRequest): Promise<string> {
+  const arrayBuffer = await req.arrayBuffer();
+  return Buffer.from(arrayBuffer).toString("utf8");
+}
 
 export async function POST(req: NextRequest) {
-  const body = await req.text();
   const sig = req.headers.get("stripe-signature");
 
   if (!sig)
     return NextResponse.json({ error: "Missing signature" }, { status: 400 });
+
+  // const body = await req.text();
+  const body = await getRawBody(req);
 
   let event: Stripe.Event;
 
