@@ -15,7 +15,8 @@ export type Course = {
 export type Category = {
   title: string;
   description: string;
-  icon: LucideIcon;
+  icon: string;
+  // icon: LucideIcon;
   color?: string;
   courses: Course[];
 };
@@ -24,7 +25,8 @@ export const courseCategories: Category[] = [
   {
     title: "📚 Professional Formations (Pro-Level)",
     description: "Advanced courses for beauty professionals",
-    icon: GraduationCap,
+    icon: "GraduationCap",
+    // icon: GraduationCap,
     color: "bg-gradient-to-br from-purple-500 to-pink-500",
     courses: [
       {
@@ -87,7 +89,8 @@ export const courseCategories: Category[] = [
   {
     title: "🎓 Basic Formations",
     description: "Perfect starting point for beauty enthusiasts",
-    icon: Sparkles,
+    icon: "Sparkles",
+    // icon: Sparkles,
     color: "bg-gradient-to-br from-blue-500 to-cyan-500",
     courses: [
       {
@@ -135,7 +138,8 @@ export const courseCategories: Category[] = [
   {
     title: "💼 Business Formations",
     description: "Build your beauty business empire",
-    icon: Briefcase,
+    icon: "Briefcase",
+    // icon: Briefcase,
     color: "bg-gradient-to-br from-green-500 to-emerald-500",
     courses: [
       {

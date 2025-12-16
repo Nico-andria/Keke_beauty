@@ -15,11 +15,12 @@ import { Loader2, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 // import type { Course } from "@/data/courses";
 import { CourseFeatured } from "@/data/featuredCourse";
+import { Course } from "@/data/courses";
 
 interface DialogContenuProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  course: CourseFeatured;
+  course: CourseFeatured | Course;
 }
 
 export default function DialogContenu({
