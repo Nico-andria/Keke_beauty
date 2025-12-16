@@ -106,6 +106,20 @@ export const courseCategories: Category[] = [
           "Practical exercises",
         ],
       },
+      {
+        id: "membership-access",
+        name: "MEMBERSHIP ACCESS",
+        description:
+          "Access to Keke Beauty Academy online trainings (Nails, Hair, Eyelashes, Makeup). Learn, grow, and get your certificate.Vocational training at Keke Beauty Academy (nails, hair, eyelashes, makeup, and so on...)",
+        duration: "Every two months",
+        level: "Beginner",
+        price: 30,
+        features: [
+          "Basic techniques",
+          "Product knowledge",
+          "Practical exercises",
+        ],
+      },
       // {
       //   id: "makeup-basics",
       //   name: "MAKEUP-BASICS",
