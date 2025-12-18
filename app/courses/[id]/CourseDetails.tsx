@@ -174,7 +174,7 @@ export default function CourseDetails({
 
                 <button
                   onClick={() => setIsDialogOpen(true)}
-                  className="w-full rounded-xl bg-linear-to-r from-pink-500 to-purple-500 text-white py-4 font-semibold"
+                  className="w-full rounded-xl bg-linear-to-r from-pink-500 to-purple-500 text-white py-4 font-semibold cursor-pointer"
                 >
                   Enroll Now
                 </button>

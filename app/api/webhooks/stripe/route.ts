@@ -29,34 +29,103 @@ const clientHtmlEmail = (
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Order Confirmation</title>
+<title>Order Confirmation - Keke Academy</title>
 <style>
-  body { font-family: 'Inter', sans-serif; margin:0; padding:0; background:#f5f5f7; color:#333; }
-  .container { max-width:600px; margin:20px auto; background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.08); }
-  .header { background: linear-gradient(135deg,#fbb6ce,#c084fc); padding:30px; text-align:center; color:white; }
-  .header img { height:50px; margin-bottom:10px; }
-  .header h1 { margin:0; font-size:26px; }
-  .body { padding:30px; }
-  .body h2 { margin-top:0; color:#9d174d; }
-  .body p { margin:8px 0; }
-  .button { display:inline-block; margin-top:20px; padding:12px 24px; background: linear-gradient(135deg,#fbb6ce,#c084fc); color:white; text-decoration:none; border-radius:12px; font-weight:bold; }
-  .footer { text-align:center; font-size:12px; color:#999; padding:20px; border-top:1px solid #eee; }
+  /* Base styles */
+  body { 
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    background-color: #f9fafb; 
+    color: #1f2937; 
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrapper { width: 100%; table-layout: fixed; background-color: #f9fafb; padding-bottom: 40px; }
+  .container { max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+  
+  /* Header */
+  .header { 
+    background: linear-gradient(135deg, #fbcfe8, #e9d5ff); 
+    padding: 40px 20px; 
+    text-align: center; 
+  }
+  .header img { height: 60px; margin-bottom: 15px; }
+  .header h1 { margin: 0; font-size: 24px; color: #5b21b6; font-weight: 800; }
+  
+  /* Body Content */
+  .content { padding: 40px 30px; }
+  .content h2 { margin-top: 0; color: #111827; font-size: 20px; }
+  .content p { line-height: 1.6; color: #4b5563; margin-bottom: 20px; }
+  
+  /* Order Details Box */
+  .order-summary { 
+    background-color: #fdf2f8; 
+    border-radius: 12px; 
+    padding: 20px; 
+    margin: 25px 0;
+    border: 1px solid #fce7f3;
+  }
+  .order-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 15px; }
+  .order-item:last-child { margin-bottom: 0; }
+  .label { color: #9d174d; font-weight: 600; }
+  .value { color: #1f2937; font-weight: 500; text-align: right; }
+  
+  /* Button */
+  .cta-container { text-align: center; margin-top: 30px; }
+  .button { 
+    display: inline-block; 
+    padding: 16px 32px; 
+    background: linear-gradient(135deg, #ec4899, #8b5cf6); 
+    color: #ffffff !important; 
+    text-decoration: none; 
+    border-radius: 12px; 
+    font-weight: bold; 
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+  }
+  
+  /* Footer */
+  .footer { text-align: center; font-size: 13px; color: #9ca3af; padding: 30px; border-top: 1px solid #f3f4f6; }
 </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <img src="cid:keke-logo" alt="Keke Academy" />
-      <h1>Thank you for your purchase!</h1>
+  <div class="wrapper">
+    <div class="container">
+      <div class="header">
+        <img src="cid:keke-logo" alt="Keke Academy" />
+        <h1>Thank you for your purchase!</h1>
+      </div>
+      
+      <div class="content">
+        <h2>Hello ${customerName},</h2>
+        <p>It's confirmed! Your order has been successfully processed. Below are the details of your purchase made on <strong>${new Date().toLocaleString(
+          "en-EN"
+        )}</strong>.</p>
+        
+        <div class="order-summary">
+          <div class="order-item">
+            <span class="label">Course:</span>
+            <span class="value">${courseTitle}</span>
+          </div>
+          <div class="order-item">
+            <span class="label">Date of Receipt:</span>
+            <span class="value">${new Date().toLocaleString("en-EN")}</span>
+          </div>
+          <div class="order-item">
+            <span class="label">Amount Paid:</span>
+            <span class="value" style="font-size: 18px; color: #be185d;">${amount} ${currency}</span>
+          </div>
+        </div>
+        
+        <p style="margin-top: 30px; font-size: 14px; text-align: center; color: #9ca3af;">
+          If you have any questions, our support team is here to help.
+        </p>
+      </div>
+      
+      <div class="footer">
+        © 2025 Keke Academy. All rights reserved.<br>
+      </div>
     </div>
-    <div class="body">
-      <h2>Hello ${customerName},</h2>
-      <p>Your order has been successfully confirmed.</p>
-      <p><strong>Course:</strong> ${courseTitle}</p>
-      <p><strong>Amount Paid:</strong> ${amount} ${currency}</p>
-      <a href="#" class="button">Access Your Course</a>
-    </div>
-    <div class="footer">© 2025 Keke Academy. All rights reserved.</div>
   </div>
 </body>
 </html>
