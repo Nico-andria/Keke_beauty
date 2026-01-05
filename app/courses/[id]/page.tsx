@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { courseCategories } from "@/data/courses";
-import CourseDetails, { Course, Category } from "./CourseDetails";
+import { courseCategories, Course, Category } from "@/data/courses";
+import CourseDetailsMain from "./CourseDetailsMain";
 
 function getCourseById(
   id: string
@@ -13,18 +13,18 @@ function getCourseById(
 }
 
 type PageProps = {
-  params: Promise<{
-    id: string;
-  }>;
+  params: Promise<{ id: string }>;
 };
 
 export default async function CourseDetailPage({ params }: PageProps) {
   const { id } = await params;
-
   const result = getCourseById(id);
+
   if (!result) {
     notFound();
   }
 
-  return <CourseDetails course={result.course} category={result.category} />;
+  return (
+    <CourseDetailsMain course={result.course} category={result.category} />
+  );
 }

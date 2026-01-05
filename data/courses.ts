@@ -5,6 +5,7 @@ export type Course = {
   description: string;
   longDescription?: string;
   duration: string;
+  access: string;
   level: string;
   price: number;
   features: string[];
@@ -23,6 +24,39 @@ export type Category = {
 
 export const courseCategories: Category[] = [
   {
+    title: "📚 Membership Access",
+    description: "Access to ongoing beauty trainings",
+    icon: "GraduationCap",
+    // icon: GraduationCap,
+    color: "bg-gradient-to-br from-purple-500 to-pink-500",
+    courses: [
+      {
+        id: "membership-access",
+        name: "MEMBERSHIP ACCESS",
+        description:
+          "Access to Keke Beauty Academy online trainings (Nails, Hair, Eyelashes, Makeup). Learn, grow, and get your certificate.Vocational training at Keke Beauty Academy (nails, hair, eyelashes, makeup, and so on...)",
+        longDescription:
+          "The Membership Access program provides continuous access to Keke Beauty Academy’s online vocational trainings, covering nails, hair, eyelashes, makeup, and more. This flexible learning model allows students to progress at their own pace and receive certification every two months.",
+        duration: "Every two months",
+        access: "Every two months",
+        level: "Beginner",
+        price: 30,
+        featured: false,
+        features: [
+          "Basic techniques",
+          "Product knowledge",
+          "Practical exercises",
+        ],
+        benefits: [
+          "Affordable access to multiple beauty disciplines",
+          "Learn at your own pace with online content",
+          "Receive certificates for completed trainings",
+          "Continuously upgrade your beauty skills",
+        ],
+      },
+    ],
+  },
+  {
     title: "📚 Professional Formations (Pro-Level)",
     description: "Advanced courses for beauty professionals",
     icon: "GraduationCap",
@@ -37,6 +71,7 @@ export const courseCategories: Category[] = [
         longDescription:
           "This intensive professional makeup artistry course covers everything from basic application techniques to advanced editorial and bridal makeup.",
         duration: "8-10 weeks",
+        access: "Lifetime access",
         level: "Professional",
         price: 150,
         featured: true,
@@ -59,6 +94,7 @@ export const courseCategories: Category[] = [
         longDescription:
           "The PRO-BEAUTY SKILLS program is an intensive professional training designed for beauty practitioners who want to master advanced techniques across multiple beauty disciplines...",
         duration: "8-12 weeks",
+        access: "Lifetime access",
         level: "Professional",
         price: 900,
         featured: false,
@@ -83,6 +119,7 @@ export const courseCategories: Category[] = [
         longDescription:
           "This professional eyelash training covers classic, hybrid, and volume extension techniques with a strong emphasis on safety, hygiene, and client consultation. You will learn how to customize lash sets based on eye shape and client preferences while maintaining high professional standards.",
         duration: "6-8 weeks",
+        access: "Lifetime access",
         level: "Professional",
         price: 150,
         featured: false,
@@ -105,6 +142,7 @@ export const courseCategories: Category[] = [
         longDescription:
           "The PRO-HAIRSTYLIST course provides a comprehensive approach to professional hair care, cutting, coloring, and styling. Designed for aspiring and practicing hairstylists, this program combines theory with hands-on techniques to meet salon-level expectations.",
         duration: "10-12 weeks",
+        access: "Lifetime access",
         level: "Professional",
         price: 450,
         featured: false,
@@ -117,12 +155,13 @@ export const courseCategories: Category[] = [
         ],
       },
       {
-        id: "pro-makeup-artist",
+        id: "pro-makeup-artist1",
         name: "PRO-MAKEUP-ARTIST",
         description: "Professional makeup artistry for all occasions",
         longDescription:
           "This professional makeup artistry course trains you to create flawless looks for weddings, photoshoots, events, and editorial projects. You will master skin preparation, color matching, and advanced makeup techniques suitable for diverse clients and occasions.",
         duration: "8-10 weeks",
+        access: "Lifetime access",
         level: "Professional",
         price: 150,
         featured: false,
@@ -141,6 +180,7 @@ export const courseCategories: Category[] = [
         longDescription:
           "The PRO-NAIL-TECHNICIAN program focuses on advanced nail care, creative nail art, and professional hygiene standards. It also introduces essential business skills to help you manage clients and grow your nail services professionally.",
         duration: "6-8 weeks",
+        access: "Lifetime access",
         level: "Professional",
         price: 300,
         featured: false,
@@ -168,6 +208,7 @@ export const courseCategories: Category[] = [
         longDescription:
           "This beginner-friendly course introduces essential beauty techniques for those with no prior experience. It provides a solid foundation in basic practices, product knowledge, and hands-on exercises to build confidence and prepare learners for advanced training.",
         duration: "4-6 weeks",
+        access: "Lifetime access",
         level: "Beginner",
         price: 120,
         featured: false,
@@ -181,29 +222,6 @@ export const courseCategories: Category[] = [
           "Build confidence through guided practice",
           "Understand basic tools and products",
           "Prepare for professional or advanced courses",
-        ],
-      },
-      {
-        id: "membership-access",
-        name: "MEMBERSHIP ACCESS",
-        description:
-          "Access to Keke Beauty Academy online trainings (Nails, Hair, Eyelashes, Makeup). Learn, grow, and get your certificate.Vocational training at Keke Beauty Academy (nails, hair, eyelashes, makeup, and so on...)",
-        longDescription:
-          "The Membership Access program provides continuous access to Keke Beauty Academy’s online vocational trainings, covering nails, hair, eyelashes, makeup, and more. This flexible learning model allows students to progress at their own pace and receive certification every two months.",
-        duration: "Every two months",
-        level: "Beginner",
-        price: 30,
-        featured: false,
-        features: [
-          "Basic techniques",
-          "Product knowledge",
-          "Practical exercises",
-        ],
-        benefits: [
-          "Affordable access to multiple beauty disciplines",
-          "Learn at your own pace with online content",
-          "Receive certificates for completed trainings",
-          "Continuously upgrade your beauty skills",
         ],
       },
     ],
@@ -222,6 +240,7 @@ export const courseCategories: Category[] = [
         longDescription:
           "This business-focused course guides you through every step of launching and managing a successful beauty salon. From business planning and branding to marketing and financial management, you will gain practical knowledge to turn your beauty skills into a profitable enterprise.",
         duration: "6-8 weeks",
+        access: "Lifetime access",
         level: "Entrepreneurial",
         price: 150,
         featured: false,

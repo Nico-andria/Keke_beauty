@@ -12,23 +12,29 @@ import {
 } from "lucide-react";
 import { formatPrice } from "@/lib/course-utils";
 import DialogContenu from "./dialog-content";
-import { courseCategories } from "@/data/courses";
+import { courseCategories, Course } from "@/data/courses"; // Importez le type Course
 
-export default function FeaturedCourse() {
+interface FeaturedCourseProps {
+  course?: Course; // Optionnel : si présent, on affiche celui-là
+}
+
+export default function FeaturedCourse({
+  course: passedCourse,
+}: FeaturedCourseProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   /**
-   * 🔹 Récupère le cours featured depuis toutes les catégories
+   * 🔹 Si un cours est passé en prop, on l'utilise.
+   * 🔹 Sinon, on cherche le premier cours "featured" dans les données.
    */
   const course = useMemo(() => {
+    if (passedCourse) return passedCourse;
+
     return courseCategories
       .flatMap((category) => category.courses)
-      .find((course) => course.featured === true);
-  }, []);
+      .find((c) => c.featured === true);
+  }, [passedCourse]);
 
-  /**
-   * 🔹 Sécurité : si aucun cours n’est marqué featured
-   */
   if (!course) return null;
 
   const openDialog = () => setIsDialogOpen(true);
@@ -51,7 +57,7 @@ export default function FeaturedCourse() {
             <div className="inline-flex items-center gap-2 bg-linear-to-r from-pink-100 to-purple-100 px-6 py-3 rounded-full mb-6">
               <Sparkles className="w-5 h-5 text-pink-500" />
               <span className="font-semibold text-pink-600">
-                FEATURED COURSE
+                {passedCourse ? "DÉTAILS DU COURS" : "COURS À LA UNE"}
               </span>
             </div>
 
@@ -89,7 +95,7 @@ export default function FeaturedCourse() {
                 />
                 <CourseMeta
                   icon={<Users className="w-5 h-5 text-purple-500" />}
-                  text="Expert Instructors"
+                  text="Instructeurs Experts"
                 />
                 <CourseMeta
                   icon={<Award className="w-5 h-5 text-pink-500" />}
@@ -99,7 +105,7 @@ export default function FeaturedCourse() {
 
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  What You’ll Learn
+                  What you will learn
                 </h3>
 
                 {course.longDescription && (
@@ -134,13 +140,13 @@ export default function FeaturedCourse() {
               >
                 <div className="text-center mb-6">
                   <p className="text-gray-500 text-sm uppercase tracking-wide mb-2">
-                    Course Investment
+                    Investissement
                   </p>
                   <span className="text-5xl font-bold text-gray-900">
                     {formatPrice(course.price)}
                   </span>
                   <p className="text-gray-500 mt-2">
-                    One-time payment • Lifetime access
+                    Unique Payment • {course.access}
                   </p>
                 </div>
 
