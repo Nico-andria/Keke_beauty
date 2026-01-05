@@ -14,26 +14,27 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { Course, Category } from "@/data/courses";
 
 /* -------------------------------------------------------------------------- */
 /*                                   TYPES                                    */
 /* -------------------------------------------------------------------------- */
 
-export type Course = {
-  id: string;
-  name: string;
-  price: number;
-  duration: string;
-  level: string;
-  features: string[];
-  description: string;
-};
+// export type Course = {
+//   id: string;
+//   name: string;
+//   price: number;
+//   duration: string;
+//   level: string;
+//   features: string[];
+//   description: string;
+// };
 
-export type Category = {
-  title: string;
-  icon: string; // 🔑 clé string venant du Server Component
-  courses: Course[];
-};
+// export type Category = {
+//   title: string;
+//   icon: string;
+//   courses: Course[];
+// };
 
 type CourseDetailClientProps = {
   course: Course;
