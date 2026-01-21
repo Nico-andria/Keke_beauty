@@ -45,12 +45,13 @@ function SuccessContent() {
   return (
     <>
       {/* ================= SUCCESS SECTION ================= */}
-      <div className="bg-linear-to-br from-green-50 via-white to-pink-50 flex items-start justify-center px-4 pt-24 pb-12 relative">
+      <div className="bg-linear-to-br from-green-50 via-white to-pink-50 flex items-start justify-center px-4 pt-2 pb-2 relative">
         <motion.div
-          initial={{ opacity: 0, y: -40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-2xl w-full"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="flex flex-col items-center mt-1 mb-1"
         >
           <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 text-center">
             {/* Icon */}

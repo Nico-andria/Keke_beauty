@@ -22,7 +22,7 @@ const clientHtmlEmail = (
   customerName: string,
   courseTitle: string,
   amount: string,
-  currency: string
+  currency: string,
 ) => `
 <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +99,7 @@ const clientHtmlEmail = (
       <div class="content">
         <h2>Hello ${customerName},</h2>
         <p>It's confirmed! Your order has been successfully processed. Below are the details of your purchase made on <strong>${new Date().toLocaleString(
-          "en-EN"
+          "en-EN",
         )}</strong>.</p>
         
         <div class="order-summary">
@@ -123,7 +123,7 @@ const clientHtmlEmail = (
       </div>
       
       <div class="footer">
-        © 2025 Keke Academy. All rights reserved.<br>
+        © 2026 Keke Academy. All rights reserved.<br>
       </div>
     </div>
   </div>
@@ -138,7 +138,7 @@ const adminHtmlEmail = (
   customerPhone: string,
   courseTitle: string,
   amount: string,
-  currency: string
+  currency: string,
 ) => `
 <!DOCTYPE html>
 <html lang="en">
@@ -173,7 +173,7 @@ const adminHtmlEmail = (
       <p><strong>Course:</strong> ${courseTitle}</p>
       <p><strong>Amount:</strong> ${amount} ${currency}</p>
     </div>
-    <div class="footer">© 2025 Keke Academy. All rights reserved.</div>
+    <div class="footer">© 2026 Keke Academy. All rights reserved.</div>
   </div>
 </body>
 </html>
@@ -199,7 +199,7 @@ export async function POST(req: NextRequest) {
     event = stripe.webhooks.constructEvent(
       body,
       sig,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      process.env.STRIPE_WEBHOOK_SECRET!,
     );
   } catch (err) {
     console.error("❌ Invalid Stripe signature:", err);
@@ -208,7 +208,7 @@ export async function POST(req: NextRequest) {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
-    console.log("✅ Payment completed:", session);
+    // console.log("✅ Payment completed:", session);
 
     const customerEmail = session.customer_email;
     if (!customerEmail) {
@@ -249,7 +249,7 @@ export async function POST(req: NextRequest) {
           customerPhone,
           courseTitle,
           amount,
-          currency
+          currency,
         ),
         attachments: [
           {
