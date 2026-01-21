@@ -326,7 +326,7 @@ export default function DialogContenu({
 
           {/* PHONE */}
           <div className="space-y-2">
-            <Label>Phone</Label>
+            <Label>Phone *</Label>
 
             <div className="flex gap-2">
               {/* COUNTRY DROPDOWN */}
