@@ -73,7 +73,8 @@ export const courseCategories: Category[] = [
         duration: "8-10 weeks",
         access: "Lifetime access",
         level: "Professional",
-        price: 150,
+        price: 10,
+        // price: 150,
         featured: true,
         features: [
           "Professional bridal makeup techniques",
