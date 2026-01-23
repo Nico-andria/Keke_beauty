@@ -163,6 +163,7 @@ export const COUNTRY_CODES = [
   { iso: "NZ", code: "+64", label: "New Zealand" },
   { iso: "NG", code: "+234", label: "Nigeria" },
   { iso: "NO", code: "+47", label: "Norway" },
+  { iso: "OM", code: "+968", label: "Oman" },
 
   { iso: "PK", code: "+92", label: "Pakistan" },
   { iso: "PA", code: "+507", label: "Panama" },
