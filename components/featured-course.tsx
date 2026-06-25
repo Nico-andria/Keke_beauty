@@ -35,7 +35,7 @@ export default function FeaturedCourse({
   return (
     <>
       <section
-        className="py-28 bg-white overflow-hidden scroll-mt-24"
+        className="py-28 bg-white dark:bg-gray-950 overflow-hidden scroll-mt-24"
         id="featuredCourse"
       >
         <div className="container mx-auto px-4 max-w-6xl">
@@ -54,11 +54,11 @@ export default function FeaturedCourse({
               </span>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-5">
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-5">
               {course.fullName ?? course.name}
             </h2>
 
-            <p className="text-xl text-gray-500 font-light max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-500 dark:text-gray-400 font-light max-w-3xl mx-auto leading-relaxed">
               {course.description}
             </p>
           </motion.div>
@@ -75,8 +75,8 @@ export default function FeaturedCourse({
               {/* Visual card */}
               <div className="relative aspect-video bg-gray-900 rounded-3xl overflow-hidden flex items-center justify-center">
                 <div className="absolute inset-0 bg-linear-to-br from-gray-800 to-gray-950" />
-                <div className="absolute -top-10 -right-10 w-48 h-48 bg-pink-500/20 rounded-full blur-3xl" />
-                <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-purple-500/15 rounded-full blur-3xl" />
+                <div className="absolute -top-10 -right-10 w-48 h-48 bg-pink-500/12 rounded-full blur-[80px]" />
+                <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-purple-500/10 rounded-full blur-[80px]" />
 
                 <div className="relative z-10 text-center px-8 space-y-5">
                   <div className="w-14 h-14 mx-auto rounded-2xl bg-pink-500/20 border border-pink-500/30 flex items-center justify-center">
@@ -120,13 +120,13 @@ export default function FeaturedCourse({
               </div>
 
               {/* What you'll learn */}
-              <div className="bg-white rounded-2xl p-8 border border-gray-100">
-                <h3 className="text-xl font-semibold tracking-tight text-gray-900 mb-3">
+              <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 border border-gray-100 dark:border-gray-800">
+                <h3 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white mb-3">
                   What you will learn
                 </h3>
 
                 {course.longDescription && (
-                  <p className="text-gray-500 font-light text-sm mb-6 leading-relaxed">
+                  <p className="text-gray-500 dark:text-gray-400 font-light text-sm mb-6 leading-relaxed">
                     {course.longDescription}
                   </p>
                 )}
@@ -135,7 +135,7 @@ export default function FeaturedCourse({
                   {course.features.map((feature, i) => (
                     <div key={i} className="flex items-start gap-2.5">
                       <CheckCircle className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
-                      <span className="text-gray-700 text-sm font-light">
+                      <span className="text-gray-700 dark:text-gray-200 text-sm font-light">
                         {feature}
                       </span>
                     </div>
@@ -158,23 +158,23 @@ export default function FeaturedCourse({
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-3xl border border-gray-200 overflow-hidden"
+                className="bg-white dark:bg-gray-900 rounded-3xl border border-gray-200 dark:border-gray-800 overflow-hidden"
               >
                 {/* Price header */}
-                <div className="p-8 border-b border-gray-100 text-center">
-                  <p className="text-xs font-medium uppercase tracking-widest text-gray-400 mb-2">
+                <div className="p-8 border-b border-gray-100 dark:border-gray-800 text-center">
+                  <p className="text-xs font-medium uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">
                     One-time Investment
                   </p>
-                  <p className="text-6xl font-bold tracking-tight text-gray-900 mb-1">
+                  <p className="text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-1">
                     {formatPrice(course.price)}
                   </p>
-                  <p className="text-sm text-gray-400 font-light">
+                  <p className="text-sm text-gray-400 dark:text-gray-500 font-light">
                     One-time payment · {course.access}
                   </p>
                 </div>
 
                 {/* Benefits */}
-                <div className="px-8 py-6 space-y-3 border-b border-gray-100">
+                <div className="px-8 py-6 space-y-3 border-b border-gray-100 dark:border-gray-800">
                   {[
                     "Secure payment via Stripe",
                     "Instant course access after payment",
@@ -183,7 +183,7 @@ export default function FeaturedCourse({
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3">
                       <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
-                      <span className="text-gray-600 text-sm font-light">
+                      <span className="text-gray-600 dark:text-gray-300 text-sm font-light">
                         {item}
                       </span>
                     </div>
@@ -213,9 +213,9 @@ export default function FeaturedCourse({
 
 function MetaChip({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div className="inline-flex items-center gap-2 bg-white border border-gray-100 rounded-full px-4 py-2 shadow-sm">
+    <div className="inline-flex items-center gap-2 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-full px-4 py-2 shadow-sm">
       {icon}
-      <span className="text-sm font-medium text-gray-700">{text}</span>
+      <span className="text-sm font-medium text-gray-700 dark:text-gray-200">{text}</span>
     </div>
   );
 }
@@ -232,7 +232,7 @@ function EnrollButton({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className="w-full bg-pink-500 hover:bg-pink-600 text-white font-medium py-4 px-8 rounded-full shadow-lg shadow-pink-100 transition-colors duration-300 flex items-center justify-center gap-2.5 text-base cursor-pointer"
+      className="w-full bg-pink-500 hover:bg-pink-600 text-white font-medium py-4 px-8 rounded-full glow-pink-soft transition-colors duration-300 flex items-center justify-center gap-2.5 text-base cursor-pointer"
     >
       <ShoppingCart className="w-5 h-5" />
       {children}

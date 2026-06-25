@@ -10,7 +10,7 @@ import FeaturedCourse from "@/components/featured-course";
 
 export default function HomePage() {
   return (
-    <main id="top" className="min-h-screen bg-white">
+    <main id="top" className="min-h-screen bg-white dark:bg-gray-950">
       <Navbar />
       <Hero />
       <About />

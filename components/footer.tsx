@@ -11,7 +11,7 @@ export default function Footer() {
   });
 
   return (
-    <footer id="contact" className="bg-gray-900 text-white scroll-mt-24">
+    <footer id="contact" className="bg-gray-900 dark:bg-gray-950 dark:border-t dark:border-gray-800 text-white scroll-mt-24">
       <div className="container mx-auto px-6 max-w-6xl">
         {/* Top section */}
         <motion.div

@@ -69,7 +69,7 @@ export default function WhyChooseUs({ course: passedCourse }: WhyChooseUsProps) 
   };
 
   return (
-    <section className="py-28 bg-white">
+    <section className="py-28 bg-white dark:bg-gray-950">
       <div className="container mx-auto px-6 max-w-6xl">
         <motion.div
           ref={ref}
@@ -83,10 +83,10 @@ export default function WhyChooseUs({ course: passedCourse }: WhyChooseUsProps) 
             <span className="text-sm font-medium tracking-wide text-pink-500 uppercase">
               Why Keke
             </span>
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white">
               Designed around you
             </h2>
-            <p className="text-xl text-gray-500 font-light max-w-2xl mx-auto">
+            <p className="text-xl text-gray-500 font-light max-w-2xl mx-auto dark:text-gray-400">
               Discover what makes Keke Beauty Academy the perfect choice for
               your beauty education journey.
             </p>
@@ -100,7 +100,7 @@ export default function WhyChooseUs({ course: passedCourse }: WhyChooseUsProps) 
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300"
+                className="group bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300 dark:bg-gray-900 dark:border-gray-800"
               >
                 <div className="space-y-4">
                   <div
@@ -110,10 +110,10 @@ export default function WhyChooseUs({ course: passedCourse }: WhyChooseUsProps) 
                   >
                     <feature.icon className="w-7 h-7" />
                   </div>
-                  <h3 className="text-base font-semibold text-gray-900 tracking-tight">
+                  <h3 className="text-base font-semibold text-gray-900 tracking-tight dark:text-white">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-500 font-light leading-relaxed text-sm">
+                  <p className="text-gray-500 font-light leading-relaxed text-sm dark:text-gray-400">
                     {feature.description}
                   </p>
                 </div>
@@ -131,7 +131,7 @@ export default function WhyChooseUs({ course: passedCourse }: WhyChooseUsProps) 
         viewport={{ once: true }}
         className="mt-16 text-center px-4"
       >
-        <div className="max-w-4xl mx-auto bg-gray-900 rounded-3xl p-10 md:p-16">
+        <div className="max-w-4xl mx-auto bg-gray-900 rounded-3xl p-10 md:p-16 dark:border dark:border-gray-800">
           <h3 className="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-4">
             Ready to transform your career?
           </h3>

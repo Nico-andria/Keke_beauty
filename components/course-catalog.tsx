@@ -22,39 +22,42 @@ const categoryIcons = {
 
 const categorySchemes = [
   {
-    bg: "bg-purple-50",
-    text: "text-purple-600",
-    border: "border-purple-100",
+    bg: "bg-purple-50 dark:bg-purple-500/10",
+    text: "text-purple-600 dark:text-purple-400",
+    border: "border-purple-100 dark:border-purple-500/20",
     accent: "bg-purple-500",
-    chip: "bg-purple-50 text-purple-600",
+    chip: "bg-purple-50 text-purple-600 dark:bg-purple-500/10 dark:text-purple-400",
   },
   {
-    bg: "bg-pink-50",
-    text: "text-pink-600",
-    border: "border-pink-100",
+    bg: "bg-pink-50 dark:bg-pink-500/10",
+    text: "text-pink-600 dark:text-pink-400",
+    border: "border-pink-100 dark:border-pink-500/20",
     accent: "bg-pink-500",
-    chip: "bg-pink-50 text-pink-600",
+    chip: "bg-pink-50 text-pink-600 dark:bg-pink-500/10 dark:text-pink-400",
   },
   {
-    bg: "bg-blue-50",
-    text: "text-blue-600",
-    border: "border-blue-100",
+    bg: "bg-blue-50 dark:bg-blue-500/10",
+    text: "text-blue-600 dark:text-blue-400",
+    border: "border-blue-100 dark:border-blue-500/20",
     accent: "bg-blue-500",
-    chip: "bg-blue-50 text-blue-600",
+    chip: "bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400",
   },
   {
-    bg: "bg-emerald-50",
-    text: "text-emerald-600",
-    border: "border-emerald-100",
+    bg: "bg-emerald-50 dark:bg-emerald-500/10",
+    text: "text-emerald-600 dark:text-emerald-400",
+    border: "border-emerald-100 dark:border-emerald-500/20",
     accent: "bg-emerald-500",
-    chip: "bg-emerald-50 text-emerald-600",
+    chip: "bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400",
   },
 ];
 
 const levelColors: Record<string, string> = {
-  Beginner: "bg-green-50 text-green-700 border-green-200",
-  Professional: "bg-purple-50 text-purple-700 border-purple-200",
-  Entrepreneurial: "bg-orange-50 text-orange-700 border-orange-200",
+  Beginner:
+    "bg-green-50 text-green-700 border-green-200 dark:bg-green-500/10 dark:text-green-300 dark:border-green-500/20",
+  Professional:
+    "bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-500/10 dark:text-purple-300 dark:border-purple-500/20",
+  Entrepreneurial:
+    "bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-500/10 dark:text-orange-300 dark:border-orange-500/20",
 };
 
 const LEVEL_ORDER = ["Beginner", "Professional", "Entrepreneurial"];
@@ -105,7 +108,7 @@ export default function CourseCatalog() {
   );
 
   return (
-    <section id="courses" className="py-28 bg-gray-50 scroll-mt-24">
+    <section id="courses" className="py-28 bg-gray-50 dark:bg-gray-950 scroll-mt-24">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Section header */}
         <motion.div
@@ -119,10 +122,10 @@ export default function CourseCatalog() {
             <Sparkles className="w-4 h-4" />
             Course Catalog
           </span>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">
             All our courses
           </h2>
-          <p className="text-lg text-gray-500 font-light leading-relaxed">
+          <p className="text-lg text-gray-500 dark:text-gray-400 font-light leading-relaxed">
             From your first steps to professional mastery — find the program
             that fits your beauty journey.
           </p>
@@ -152,14 +155,14 @@ export default function CourseCatalog() {
                   className={`relative rounded-full px-5 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 focus-visible:ring-offset-2 cursor-pointer ${
                     active
                       ? "text-white"
-                      : "text-gray-600 hover:text-gray-900 bg-white border border-gray-200 hover:border-gray-300"
+                      : "text-gray-600 hover:text-gray-900 bg-white border border-gray-200 hover:border-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:text-white dark:hover:border-gray-600"
                   }`}
                 >
                   {active && (
                     <motion.span
                       layoutId="active-filter-pill"
                       transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                      className="absolute inset-0 rounded-full bg-pink-500 shadow-lg shadow-pink-100"
+                      className="absolute inset-0 rounded-full bg-pink-500 glow-pink-soft"
                     />
                   )}
                   <span className="relative z-10">{level}</span>
@@ -167,9 +170,9 @@ export default function CourseCatalog() {
               );
             })}
           </div>
-          <p className="text-sm text-gray-400 font-light">
+          <p className="text-sm text-gray-400 dark:text-gray-500 font-light">
             Showing{" "}
-            <span className="font-medium text-gray-600">{shownCount}</span> of{" "}
+            <span className="font-medium text-gray-600 dark:text-gray-300">{shownCount}</span> of{" "}
             {allCourses.length} courses
           </p>
         </motion.div>
@@ -219,7 +222,7 @@ function CategoryBlock({
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2.5">
-            <h3 className="text-2xl font-semibold tracking-tight text-gray-900">
+            <h3 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
               {cleanTitle(category.title)}
             </h3>
             <span
@@ -228,7 +231,7 @@ function CategoryBlock({
               {count} {count === 1 ? "course" : "courses"}
             </span>
           </div>
-          <p className="text-gray-500 text-sm font-light mt-0.5">
+          <p className="text-gray-500 dark:text-gray-400 text-sm font-light mt-0.5">
             {category.description}
           </p>
         </div>
@@ -267,7 +270,8 @@ function CourseCard({
   scheme: (typeof categorySchemes)[0];
 }) {
   const levelClass =
-    levelColors[course.level] ?? "bg-gray-50 text-gray-700 border-gray-200";
+    levelColors[course.level] ??
+    "bg-gray-50 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700";
 
   return (
     <motion.div
@@ -280,7 +284,7 @@ function CourseCard({
     >
       <Link
         href={`/courses/${course.id}`}
-        className="group relative flex h-full flex-col rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gray-200 hover:shadow-xl"
+        className="group relative flex h-full flex-col rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gray-200 dark:hover:border-gray-700 hover:shadow-xl"
       >
         {/* Top accent line on hover (rounded to match the card corners) */}
         <div
@@ -301,19 +305,19 @@ function CourseCard({
           >
             {course.level}
           </span>
-          <span className="inline-flex items-center gap-1 text-xs text-gray-400">
+          <span className="inline-flex items-center gap-1 text-xs text-gray-400 dark:text-gray-500">
             <Clock className="w-3.5 h-3.5" />
             {course.duration}
           </span>
         </div>
 
         {/* Title */}
-        <h4 className="text-base font-semibold text-gray-900 leading-snug mb-2 group-hover:text-pink-500 transition-colors">
+        <h4 className="text-base font-semibold text-gray-900 dark:text-white leading-snug mb-2 group-hover:text-pink-500 transition-colors">
           {course.fullName ?? course.name}
         </h4>
 
         {/* Description */}
-        <p className="text-sm text-gray-500 font-light leading-relaxed line-clamp-3 flex-1">
+        <p className="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed line-clamp-3 flex-1">
           {course.description}
         </p>
 
@@ -322,7 +326,7 @@ function CourseCard({
           {course.features.slice(0, 2).map((f) => (
             <span
               key={f}
-              className="text-xs bg-gray-50 text-gray-600 px-2.5 py-1 rounded-full border border-gray-100"
+              className="text-xs bg-gray-50 text-gray-600 px-2.5 py-1 rounded-full border border-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700"
             >
               {f}
             </span>
@@ -330,10 +334,10 @@ function CourseCard({
         </div>
 
         {/* Footer */}
-        <div className="mt-5 flex items-center justify-between border-t border-gray-100 pt-4">
+        <div className="mt-5 flex items-center justify-between border-t border-gray-100 dark:border-gray-800 pt-4">
           <div>
-            <p className="text-xs text-gray-400">From</p>
-            <p className="text-xl font-bold text-gray-900 tracking-tight">
+            <p className="text-xs text-gray-400 dark:text-gray-500">From</p>
+            <p className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">
               {formatPrice(course.price)}
             </p>
           </div>
