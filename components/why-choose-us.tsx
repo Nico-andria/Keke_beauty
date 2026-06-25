@@ -8,12 +8,10 @@ import DialogContenu from "./dialog-content";
 import { courseCategories, Course } from "@/data/courses";
 
 interface WhyChooseUsProps {
-  course?: Course; // Optional: falls back to featured if not provided
+  course?: Course;
 }
 
-export default function WhyChooseUs({
-  course: passedCourse,
-}: WhyChooseUsProps) {
+export default function WhyChooseUs({ course: passedCourse }: WhyChooseUsProps) {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -21,24 +19,14 @@ export default function WhyChooseUs({
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  /**
-   * 🔹 Logic to select course:
-   * 1. Use the passedCourse if available (Specific Course Page)
-   * 2. Otherwise, find the featured course (Home Page)
-   */
   const course = useMemo(() => {
     if (passedCourse) return passedCourse;
-
     return courseCategories
       .flatMap((category) => category.courses)
       .find((c) => c.featured === true);
   }, [passedCourse]);
 
   if (!course) return null;
-
-  const handleEnrollClick = () => {
-    setIsDialogOpen(true);
-  };
 
   const features = [
     {
@@ -72,57 +60,60 @@ export default function WhyChooseUs({
   ];
 
   const colorClasses = {
-    pink: "bg-pink-100 text-pink-500 group-hover:bg-pink-500 group-hover:text-white",
+    pink: "bg-pink-50 text-pink-500 group-hover:bg-pink-500 group-hover:text-white",
     purple:
-      "bg-purple-100 text-purple-500 group-hover:bg-purple-500 group-hover:text-white",
-    blue: "bg-blue-100 text-blue-500 group-hover:bg-blue-500 group-hover:text-white",
+      "bg-purple-50 text-purple-500 group-hover:bg-purple-500 group-hover:text-white",
+    blue: "bg-blue-50 text-blue-500 group-hover:bg-blue-500 group-hover:text-white",
     green:
-      "bg-green-100 text-green-500 group-hover:bg-green-500 group-hover:text-white",
+      "bg-green-50 text-green-500 group-hover:bg-green-500 group-hover:text-white",
   };
 
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4 max-w-6xl">
+    <section className="py-28 bg-white">
+      <div className="container mx-auto px-6 max-w-6xl">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center space-y-16"
+          className="space-y-16"
         >
-          {/* Section Header */}
-          <div className="space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-              Why Choose <span className="text-pink-500">Us</span>
+          {/* Section header */}
+          <div className="text-center space-y-4">
+            <span className="text-sm font-medium tracking-wide text-pink-500 uppercase">
+              Why Keke
+            </span>
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
+              Designed around you
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-500 font-light max-w-2xl mx-auto">
               Discover what makes Keke Beauty Academy the perfect choice for
-              your beauty education journey
+              your beauty education journey.
             </p>
           </div>
 
-          {/* Features Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Features grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                className="group bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="space-y-4">
                   <div
-                    className={`w-16 h-16 mx-auto rounded-2xl flex items-center justify-center transition-all duration-300 ${
+                    className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                       colorClasses[feature.color as keyof typeof colorClasses]
                     }`}
                   >
-                    <feature.icon className="w-8 h-8" />
+                    <feature.icon className="w-7 h-7" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-pink-500 transition-colors">
+                  <h3 className="text-base font-semibold text-gray-900 tracking-tight">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-500 font-light leading-relaxed text-sm">
                     {feature.description}
                   </p>
                 </div>
@@ -132,7 +123,7 @@ export default function WhyChooseUs({
         </motion.div>
       </div>
 
-      {/* Dynamic CTA Section */}
+      {/* CTA panel */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -140,27 +131,28 @@ export default function WhyChooseUs({
         viewport={{ once: true }}
         className="mt-16 text-center px-4"
       >
-        <div className="max-w-4xl mx-auto bg-linear-to-r from-pink-100 to-purple-100 rounded-3xl p-8 md:p-12">
-          <h3 className="text-3xl font-bold text-gray-900 mb-4">
-            Ready to Transform Your Career?
+        <div className="max-w-4xl mx-auto bg-gray-900 rounded-3xl p-10 md:p-16">
+          <h3 className="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-4">
+            Ready to transform your career?
           </h3>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-400 font-light mb-8 max-w-2xl mx-auto">
             Join thousands of successful students who started their journey with
-            our <span className="font-bold">{course.name}</span> program.
+            our{" "}
+            <span className="font-medium text-white">{course.name}</span>{" "}
+            program.
           </p>
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handleEnrollClick}
-            className="bg-linear-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-bold py-6 px-10 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 inline-flex items-center gap-3 text-lg cursor-pointer"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => setIsDialogOpen(true)}
+            className="bg-pink-500 hover:bg-pink-600 text-white font-medium py-4 px-9 rounded-full transition-colors duration-300 inline-flex items-center gap-2.5 text-base cursor-pointer"
           >
-            <ShoppingCart className="w-6 h-6" />
-            Enroll in {course.name} Course
+            <ShoppingCart className="w-5 h-5" />
+            Enroll in {course.name}
           </motion.button>
         </div>
       </motion.div>
 
-      {/* Checkout Modal */}
       <DialogContenu
         open={isDialogOpen}
         onOpenChange={setIsDialogOpen}

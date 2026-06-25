@@ -5,17 +5,17 @@ import { motion } from "framer-motion";
 import {
   ShoppingCart,
   Clock,
-  Users,
   Award,
   CheckCircle,
   Sparkles,
+  ArrowRight,
 } from "lucide-react";
 import { formatPrice } from "@/lib/course-utils";
 import DialogContenu from "./dialog-content";
-import { courseCategories, Course } from "@/data/courses"; // Importez le type Course
+import { courseCategories, Course } from "@/data/courses";
 
 interface FeaturedCourseProps {
-  course?: Course; // Optionnel : si présent, on affiche celui-là
+  course?: Course;
 }
 
 export default function FeaturedCourse({
@@ -23,13 +23,8 @@ export default function FeaturedCourse({
 }: FeaturedCourseProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  /**
-   * 🔹 Si un cours est passé en prop, on l'utilise.
-   * 🔹 Sinon, on cherche le premier cours "featured" dans les données.
-   */
   const course = useMemo(() => {
     if (passedCourse) return passedCourse;
-
     return courseCategories
       .flatMap((category) => category.courses)
       .find((c) => c.featured === true);
@@ -37,15 +32,13 @@ export default function FeaturedCourse({
 
   if (!course) return null;
 
-  const openDialog = () => setIsDialogOpen(true);
-
   return (
     <>
       <section
-        className="py-20 bg-linear-to-b from-white via-pink-50 to-white overflow-hidden"
+        className="py-28 bg-white overflow-hidden scroll-mt-24"
         id="featuredCourse"
       >
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-4 max-w-6xl">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -54,18 +47,18 @@ export default function FeaturedCourse({
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 bg-linear-to-r from-pink-100 to-purple-100 px-6 py-3 rounded-full mb-6">
-              <Sparkles className="w-5 h-5 text-pink-500" />
-              <span className="font-semibold text-pink-600">
-                {passedCourse ? "DÉTAILS DU COURS" : "COURS À LA UNE"}
+            <div className="inline-flex items-center gap-2 mb-5">
+              <Sparkles className="w-4 h-4 text-pink-500" />
+              <span className="text-sm font-medium tracking-wide text-pink-500 uppercase">
+                {passedCourse ? "Course details" : "Featured course"}
               </span>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-5">
               {course.fullName ?? course.name}
             </h2>
 
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-500 font-light max-w-3xl mx-auto leading-relaxed">
               {course.description}
             </p>
           </motion.div>
@@ -75,86 +68,134 @@ export default function FeaturedCourse({
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="grid lg:grid-cols-2 gap-12 items-start"
+            className="grid lg:grid-cols-2 gap-10 items-start"
           >
-            {/* Left */}
-            <div className="space-y-8">
-              <div className="relative aspect-video bg-linear-to-br from-pink-200 via-purple-200 to-pink-300 rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center">
-                <div className="text-center space-y-4 p-8">
-                  <Award className="w-24 h-24 text-white mx-auto" />
-                  <h3 className="text-3xl font-bold text-white">
-                    Professional Certification
-                  </h3>
+            {/* Left column */}
+            <div className="space-y-6">
+              {/* Visual card */}
+              <div className="relative aspect-video bg-gray-900 rounded-3xl overflow-hidden flex items-center justify-center">
+                <div className="absolute inset-0 bg-linear-to-br from-gray-800 to-gray-950" />
+                <div className="absolute -top-10 -right-10 w-48 h-48 bg-pink-500/20 rounded-full blur-3xl" />
+                <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-purple-500/15 rounded-full blur-3xl" />
+
+                <div className="relative z-10 text-center px-8 space-y-5">
+                  <div className="w-14 h-14 mx-auto rounded-2xl bg-pink-500/20 border border-pink-500/30 flex items-center justify-center">
+                    <Award className="w-7 h-7 text-pink-400" />
+                  </div>
+                  <div>
+                    <p className="text-pink-400 text-xs font-medium uppercase tracking-widest mb-2">
+                      Professional Certification
+                    </p>
+                    <h3 className="text-xl font-semibold text-white tracking-tight">
+                      {course.fullName ?? course.name}
+                    </h3>
+                  </div>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {course.features.map((f) => (
+                      <span
+                        key={f}
+                        className="bg-white/8 text-white/80 text-xs px-3 py-1.5 rounded-full border border-white/15 backdrop-blur-sm"
+                      >
+                        {f}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-4">
-                <CourseMeta
-                  icon={<Clock className="w-5 h-5 text-pink-500" />}
+              {/* Meta chips */}
+              <div className="flex flex-wrap gap-3">
+                <MetaChip
+                  icon={<Clock className="w-4 h-4 text-pink-500" />}
                   text={course.duration}
                 />
-                <CourseMeta
-                  icon={<Users className="w-5 h-5 text-purple-500" />}
-                  text="Instructeurs Experts"
-                />
-                <CourseMeta
-                  icon={<Award className="w-5 h-5 text-pink-500" />}
+                <MetaChip
+                  icon={<Award className="w-4 h-4 text-purple-500" />}
                   text={course.level}
+                />
+                <MetaChip
+                  icon={<CheckCircle className="w-4 h-4 text-green-500" />}
+                  text={course.access}
                 />
               </div>
 
-              <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              {/* What you'll learn */}
+              <div className="bg-white rounded-2xl p-8 border border-gray-100">
+                <h3 className="text-xl font-semibold tracking-tight text-gray-900 mb-3">
                   What you will learn
                 </h3>
 
                 {course.longDescription && (
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+                  <p className="text-gray-500 font-light text-sm mb-6 leading-relaxed">
                     {course.longDescription}
                   </p>
                 )}
 
                 <div className="grid sm:grid-cols-2 gap-3">
                   {course.features.map((feature, i) => (
-                    <div key={i} className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-green-500 shrink-0" />
-                      <span className="text-gray-700 text-sm">{feature}</span>
+                    <div key={i} className="flex items-start gap-2.5">
+                      <CheckCircle className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
+                      <span className="text-gray-700 text-sm font-light">
+                        {feature}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <CTAButton onClick={openDialog}>
-                Enroll Now for {formatPrice(course.price)}
-              </CTAButton>
+              {/* Mobile CTA */}
+              <div className="lg:hidden">
+                <EnrollButton onClick={() => setIsDialogOpen(true)}>
+                  Enroll Now — {formatPrice(course.price)}
+                </EnrollButton>
+              </div>
             </div>
 
-            {/* Right */}
-            <div className="lg:sticky lg:top-24 space-y-6">
+            {/* Right column — sticky pricing card */}
+            <div className="lg:sticky lg:top-24">
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-3xl p-8 shadow-2xl border-2 border-pink-200"
+                className="bg-white rounded-3xl border border-gray-200 overflow-hidden"
               >
-                <div className="text-center mb-6">
-                  <p className="text-gray-500 text-sm uppercase tracking-wide mb-2">
-                    Investissement
+                {/* Price header */}
+                <div className="p-8 border-b border-gray-100 text-center">
+                  <p className="text-xs font-medium uppercase tracking-widest text-gray-400 mb-2">
+                    One-time Investment
                   </p>
-                  <span className="text-5xl font-bold text-gray-900">
+                  <p className="text-6xl font-bold tracking-tight text-gray-900 mb-1">
                     {formatPrice(course.price)}
-                  </span>
-                  <p className="text-gray-500 mt-2">
-                    Unique Payment • {course.access}
+                  </p>
+                  <p className="text-sm text-gray-400 font-light">
+                    One-time payment · {course.access}
                   </p>
                 </div>
 
-                <CTAButton onClick={openDialog}>
-                  Start Your Journey Today
-                </CTAButton>
+                {/* Benefits */}
+                <div className="px-8 py-6 space-y-3 border-b border-gray-100">
+                  {[
+                    "Secure payment via Stripe",
+                    "Instant course access after payment",
+                    "Certificate upon completion",
+                    "24/7 student support",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-3">
+                      <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
+                      <span className="text-gray-600 text-sm font-light">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
 
-                <BenefitsList />
+                {/* CTA */}
+                <div className="p-8">
+                  <EnrollButton onClick={() => setIsDialogOpen(true)}>
+                    Start Your Journey Today
+                  </EnrollButton>
+                </div>
               </motion.div>
             </div>
           </motion.div>
@@ -170,18 +211,16 @@ export default function FeaturedCourse({
   );
 }
 
-/* Small Reusable Components */
-
-function CourseMeta({ icon, text }: { icon: React.ReactNode; text: string }) {
+function MetaChip({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div className="flex items-center gap-2 bg-white rounded-xl px-4 py-3 shadow-md">
+    <div className="inline-flex items-center gap-2 bg-white border border-gray-100 rounded-full px-4 py-2 shadow-sm">
       {icon}
-      <span className="font-semibold text-gray-700">{text}</span>
+      <span className="text-sm font-medium text-gray-700">{text}</span>
     </div>
   );
 }
 
-function CTAButton({
+function EnrollButton({
   children,
   onClick,
 }: {
@@ -190,33 +229,14 @@ function CTAButton({
 }) {
   return (
     <motion.button
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 0.97 }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className="w-full bg-linear-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-bold py-6 px-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 text-lg cursor-pointer"
+      className="w-full bg-pink-500 hover:bg-pink-600 text-white font-medium py-4 px-8 rounded-full shadow-lg shadow-pink-100 transition-colors duration-300 flex items-center justify-center gap-2.5 text-base cursor-pointer"
     >
-      <ShoppingCart className="w-6 h-6" />
+      <ShoppingCart className="w-5 h-5" />
       {children}
+      <ArrowRight className="w-4 h-4 ml-auto" />
     </motion.button>
-  );
-}
-
-function BenefitsList() {
-  const items = [
-    "Secure payment via Stripe",
-    "Instant course access after payment",
-    "Certificate upon completion",
-    "24/7 student support",
-  ];
-
-  return (
-    <div className="space-y-4 mb-6">
-      {items.map((item, i) => (
-        <div key={i} className="flex items-start gap-3">
-          <CheckCircle className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
-          <span className="text-gray-700 text-sm">{item}</span>
-        </div>
-      ))}
-    </div>
   );
 }
