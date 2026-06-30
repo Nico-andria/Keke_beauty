@@ -1,13 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Raleway } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-
-const raleway = Raleway({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Keke Beauty Academy - Professional Online Beauty Courses",
@@ -43,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={raleway.className}>
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

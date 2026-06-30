@@ -3,8 +3,23 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Mail, Phone, MapPin, Heart, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isHomepage = pathname === "/";
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    if (isHomepage) {
+      const element = document.getElementById(targetId);
+      if (element) {
+        e.preventDefault();
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -73,26 +88,20 @@ export default function Footer() {
               Quick Access
             </h4>
             <div className="space-y-2">
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("courses")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
+              <Link
+                href="/#courses"
+                onClick={(e) => handleLinkClick(e, "courses")}
                 className="block text-gray-400 hover:text-pink-400 transition-colors text-sm font-light text-left cursor-pointer"
               >
                 Browse Courses →
-              </button>
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("featuredCourse")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
+              </Link>
+              <Link
+                href="/#featuredCourse"
+                onClick={(e) => handleLinkClick(e, "featuredCourse")}
                 className="block text-gray-400 hover:text-pink-400 transition-colors text-sm font-light text-left cursor-pointer"
               >
                 Register for Courses →
-              </button>
+              </Link>
             </div>
           </div>
         </motion.div>

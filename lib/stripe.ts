@@ -1,7 +1,7 @@
 import Stripe from 'stripe'
 import { courseCategories, Category, Course } from '@/data/courses'
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'placeholder_key', {
   apiVersion: '2025-11-17.clover',
 })
 

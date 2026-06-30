@@ -14,6 +14,8 @@ import {
 import { GraduationCap, Sparkles, Briefcase } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -219,14 +221,20 @@ function SuccessContent() {
 
 export default function SuccessPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen flex items-center justify-center">
-          Loading...
-        </div>
-      }
-    >
-      <SuccessContent />
-    </Suspense>
+    <div className="min-h-screen bg-white dark:bg-gray-950 flex flex-col pt-16 md:pt-20">
+      <Navbar />
+      <div className="flex-1">
+        <Suspense
+          fallback={
+            <div className="min-h-screen flex items-center justify-center">
+              Loading...
+            </div>
+          }
+        >
+          <SuccessContent />
+        </Suspense>
+      </div>
+      <Footer />
+    </div>
   );
 }

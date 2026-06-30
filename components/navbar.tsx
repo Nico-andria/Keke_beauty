@@ -3,19 +3,24 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X, Sparkles } from "lucide-react";
 import ThemeToggle from "./theme-toggle";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Courses", href: "#courses" },
-  { label: "Featured", href: "#featuredCourse" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Courses", href: "/#courses" },
+  { label: "Featured", href: "/#featuredCourse" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHomepage = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -34,9 +39,25 @@ export default function Navbar() {
 
   const scrollToFeatured = () => {
     setMenuOpen(false);
-    document
-      .getElementById("featuredCourse")
-      ?.scrollIntoView({ behavior: "smooth" });
+    if (isHomepage) {
+      document
+        .getElementById("featuredCourse")
+        ?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/#featuredCourse");
+    }
+  };
+
+  const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setMenuOpen(false);
+    if (isHomepage) {
+      const id = href.split("#")[1];
+      const element = document.getElementById(id);
+      if (element) {
+        e.preventDefault();
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   return (
@@ -46,15 +67,21 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={`transition-all duration-300 ${
-          scrolled || menuOpen
+          !isHomepage || scrolled || menuOpen
             ? "border-b border-gray-100 bg-white/80 backdrop-blur-md shadow-sm dark:border-gray-800 dark:bg-gray-950/80"
             : "border-b border-transparent bg-transparent"
         }`}
       >
         <div className="container mx-auto flex h-16 items-center justify-between px-6 max-w-6xl md:h-20">
           {/* Brand */}
-          <a
-            href="#top"
+          <Link
+            href="/"
+            onClick={(e) => {
+              if (isHomepage) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
             className="flex items-center gap-2.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 focus-visible:ring-offset-2"
             aria-label="Keke Beauty Academy — back to top"
           >
@@ -69,18 +96,19 @@ export default function Navbar() {
             <span className="text-base font-semibold tracking-tight text-gray-900 md:text-lg dark:text-white">
               Keke <span className="text-pink-500">Beauty</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop links */}
           <div className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
+                onClick={(e) => handleNavLinkClick(e, link.href)}
                 className="text-sm font-medium text-gray-600 transition-colors hover:text-pink-500 focus-visible:outline-none focus-visible:text-pink-500 dark:text-gray-300 dark:hover:text-pink-400"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -128,14 +156,14 @@ export default function Navbar() {
           >
             <div className="container mx-auto flex flex-col gap-1 px-6 py-4 max-w-6xl">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(e) => handleNavLinkClick(e, link.href)}
                   className="rounded-xl px-4 py-3 text-base font-medium text-gray-700 transition-colors hover:bg-pink-50 hover:text-pink-500 dark:text-gray-200 dark:hover:bg-pink-500/10 dark:hover:text-pink-400"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <button
                 onClick={scrollToFeatured}
